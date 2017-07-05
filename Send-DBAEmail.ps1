@@ -159,8 +159,6 @@ th {
                         'Title'             = "Database Report for BCC domain";
                         'PreContent'        = "<h1>Database Report for BCC domain</h1>";
                         'HTMLFragments'     = @($html_SAJS,$html_SDMB,$html_SLDS,$html_SFGD);
-                        'jQueryDataTableUri'= 'http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.3/jquery.dataTables.min.js';
-                        'jQueryUri'         = 'http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js'
                        }
             
             ConvertTo-EnhancedHTML @params | Out-File -FilePath $filepath
