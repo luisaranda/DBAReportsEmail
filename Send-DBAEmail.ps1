@@ -13,8 +13,6 @@ function Send-DBAEmail {
     
     begin {
         Import-Module -Name EnhancedHTML2
-        Import-Module -Name SqlServer
-
     }
     
     process {
@@ -71,6 +69,8 @@ th {
 
         #Test connectivity to instance. Will stop script if this fails
         try {
+
+            Write-Verbose -Message "Testing connectivity to server $SQLServer and database $Database"
             Invoke-Sqlcmd -ServerInstance $SqlServer -Database $Database -Query 'SELECT @@version' -ErrorAction Stop | Out-Null
         }
         catch {
@@ -81,6 +81,7 @@ th {
         if($everything_ok){
 
             $filepath = Join-Path -Path $Path -ChildPath "DatabaseReport.html"
+            Write-Verbose -Message "Report will be saved on location $filepath"
 
             $params = @{
                         'As'               = 'Table';
@@ -395,5 +396,3 @@ EXECUTE [dbo].[Get_FastestGrowingDisks]
     end {
     }
 }
-
-Send-DBAEmail
